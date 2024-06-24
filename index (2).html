@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Prototype</title>
+    <script>
+	document.addEventListener("DOMContentLoaded", () => {
+    const dropdownToggle = document.querySelector(".dropdown-toggle");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const dataForm = document.getElementById("dataForm");
+
+    // Toggle dropdown menu
+    dropdownToggle.addEventListener("click", () => {
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // Handle form submission
+    dataForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = document.getElementById("dataInput").value;
+        
+        // Replace with actual data handling logic
+        alert(`Data submitted: ${data}`);
+
+        // Close the dropdown after submission
+        dropdownMenu.style.display = "none";
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+        if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+});
+
+    </script>
+    <style>
+	body {
+    font-family: Arial, sans-serif;
+}
+
+.dropdown {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.dropdown-toggle {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.dropdown-menu form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu label {
+    margin-bottom: 10px;
+}
+
+.dropdown-menu input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-menu button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <button class="dropdown-toggle">Dropdown</button>
+        <div class="dropdown-menu">
+            <form id="dataForm">
+                <label for="dataInput">Enter Data:</label>
+                <input type="text" id="dataInput" name="data" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
