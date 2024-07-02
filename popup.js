@@ -1,4 +1,5 @@
 (function() {
+  console.log('Popup script loaded!');
   class Popup {
     constructor(question) {
       this.question = question;
@@ -6,20 +7,10 @@
     }
 
     createPopup() {
+      console.log('Creating popup...');
       // Create the popup container
       const popupContainer = document.createElement('div');
-      popupContainer.style.position = 'fixed';
-      popupContainer.style.top = '50%';
-      popupContainer.style.left = '50%';
-      popupContainer.style.transform = 'translate(-50%, -50%)';
-      popupContainer.style.padding = '20px';
-      popupContainer.style.backgroundColor = 'white';
-      popupContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
-      popupContainer.style.zIndex = '1000';
-      popupContainer.style.display = 'flex';
-      popupContainer.style.flexDirection = 'column';
-      popupContainer.style.alignItems = 'center';
-      popupContainer.style.justifyContent = 'center';
+      popupContainer.className = 'popup-container';
 
       // Create the question text
       const questionText = document.createElement('p');
@@ -41,6 +32,7 @@
 
       // Append the popup container to the body
       document.body.appendChild(popupContainer);
+      console.log('Popup appended to body');
     }
 
     handleSubmit(response) {
@@ -51,9 +43,10 @@
     }
 
     closePopup() {
-      const popupContainer = document.querySelector('div');
+      const popupContainer = document.querySelector('.popup-container');
       if (popupContainer) {
         document.body.removeChild(popupContainer);
+        console.log('Popup closed');
       }
     }
   }
@@ -61,3 +54,9 @@
   // Expose the Popup class globally
   window.Popup = Popup;
 })();
+
+// To ensure the Popup is created, you need to instantiate the class.
+document.addEventListener('DOMContentLoaded', function() {
+  new Popup('What is your favorite color?');
+});
+``
